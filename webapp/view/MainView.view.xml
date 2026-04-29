@@ -2,7 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout">
-    <Page id="page">
+    <Panel id="mainPanel" expandable="true" class="sapUiContentPadding sapUiMediumMarginTop" headerText="Table for CAP service">
     <content>
         <l:BlockLayout id="blockLayout" class="sapUiBlockLayoutCustom">
             <l:BlockLayoutRow id="row1">
@@ -87,6 +87,6 @@
             </l:BlockLayoutRow>
         </l:BlockLayout>
     </content>
-</Page>
+    </Panel>
 </mvc:View>
 

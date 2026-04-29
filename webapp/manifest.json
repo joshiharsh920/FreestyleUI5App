@@ -24,6 +24,13 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "4.0"
         }
+      },
+      "sapService": {
+        "uri": "/sap/opu/odata/sap/ZTEST1_HARSH_DEMO_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -70,6 +77,13 @@
           "operationMode": "Server",
           "autoExpandSelect": true,
           "earlyRequests": true
+        }
+      },
+      "sapModel": {
+        "dataSource": "sapService",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "useBatch": true
         }
       }
     },

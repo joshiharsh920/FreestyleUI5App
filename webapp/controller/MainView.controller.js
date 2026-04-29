@@ -9,7 +9,8 @@ sap.ui.define([
 
     return Controller.extend("joshi.project1trial.controller.MainView", {
         onInit() {
-            let oThis = this;
+            window.oController = this;
+
         },
         onCreatePress(oEvent) {
             const oView = this.getView();
@@ -28,9 +29,23 @@ sap.ui.define([
 
         onCreateCancel() {
             this._oDialog.close();
+            var oModel = this.getView().getModel("sapModel");
+
+            oModel.read("/ZTESTHARSHDemo", {
+                success: function (oData, oResponse) {
+                    console.log(oData);
+                },
+                error: function (oError, oResponse) {
+                    console.error(oError);
+                }
+            });
         },
 
         async onCreateSubmit() {
+            if (this._oEditContext) {
+                return;
+            }
+
             const oModel = this.getView().getModel();
             const addressUUID = crypto.randomUUID().replace(/-/g, "");
             // const oPayload = {
@@ -161,15 +176,15 @@ sap.ui.define([
         onEditPress: function (oEvent) {
             var oContext = oEvent.getSource().getBindingContext();
 
-            if (!this._oEditDialog) {
-                this._oEditDialog = sap.ui.xmlfragment(
+            if (!this._oDialog) {
+                this._oDialog = sap.ui.xmlfragment(
                     this.getView().getId(),
-                    "joshi.project1trial.fragment.createBusinessPartner",
+                    "joshi.project1trial.fragment.CreateBusinessPartner",
                     this
                 );
-                this.getView().addDependent(this._oEditDialog);
+                this.getView().addDependent(this._oDialog);
             }
-            this._oEditDialog.open();
+            this._oDialog.open();
 
             this.byId("bpId").setValue(oContext.getProperty("BP_ID"));
             this.byId("companyName").setValue(oContext.getProperty("COMPANY_NAME"));
