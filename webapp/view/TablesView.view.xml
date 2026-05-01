@@ -1,0 +1,158 @@
+<mvc:View controllerName="joshi.project1trial.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f">
+    <Page id='page01'>
+      <Panel id="panel2" expandable="true" headerText="SAP SEGW Service Data" expanded="true">
+        <content>
+            <Table
+    id="ordersTable"
+    items="{orders>/results}"
+    inset="false"
+    growing="true"
+    growingThreshold="5"
+    growingScrollToLoad="true">
+
+    <headerToolbar>
+        <Toolbar>
+              <Title text="Orders"/>
+    <ToolbarSpacer/>
+    <Button text="Create Order" type="Emphasized" press="onOpenCreate"/>
+        </Toolbar>
+    </headerToolbar>
+
+    <columns>
+
+        <Column>
+            <Text text="Order ID"/>
+        </Column>
+
+        <Column>
+            <Text text="Customer ID"/>
+        </Column>
+
+        <Column>
+            <Text text="Customer Name"/>
+        </Column>
+
+        <Column>
+            <Text text="Order Date"/>
+        </Column>
+
+        <Column>
+            <Text text="Status"/>
+        </Column>
+
+        <Column>
+            <Text text="Address"/>
+        </Column>
+
+    </columns>
+
+    <items>
+        <ColumnListItem>
+
+            <cells>
+                <Text text="{orders>Orderid}"/>
+                <Text text="{orders>Customerid}"/>
+                <Text text="{orders>Customername}"/>
+                <Text text="{orders>Orderdate}"/>
+                <Text text="{orders>Orderstatus}"/>
+                <Text text="{orders>Address}"/>
+            </cells>
+
+        </ColumnListItem>
+    </items>
+
+</Table>
+        </content>
+    </Panel>
+    <Panel id="mainPanel" expandable="true" class="sapUiContentPadding sapUiMediumMarginTop" headerText="Table for CAP service">
+    <content>
+        <l:BlockLayout id="blockLayout" class="sapUiBlockLayoutCustom">
+            <l:BlockLayoutRow id="row1">
+           <l:BlockLayoutCell id="block1" title="Business Partners">
+    <Table
+        id="bpTable"
+        items="{
+            path: '/BusinessPartnerSet',
+            parameters: {
+                $expand: 'ADDRESS_GUID'
+            }
+        }"
+         growing="true"
+    
+        growingThreshold="5">
+ <headerToolbar>
+        <Toolbar>
+            <Title text="Business Partners" />
+
+            <ToolbarSpacer />
+          <SearchField 
+          width="30%" 
+          search=".onSearch" 
+          placeholder="Search by Company or City..."/>
+            <Button
+                text="Create"
+                type="Emphasized"
+                icon="sap-icon://add"
+                press="onCreatePress" />
+        </Toolbar>
+    </headerToolbar>
+
+        <columns>
+            <Column><Text text="BP ID" /></Column>
+            <Column><Text text="Company" /></Column>
+            <Column><Text text="Email" /></Column>
+            <Column><Text text="Phone" /></Column>
+            <Column><Text text="City" /></Column>
+            <Column><Text text="Country" /></Column>
+            <Column><Text text="Street" /></Column>
+            <Column hAlign="End">
+            <Text text="Actions" />
+        </Column>
+        </columns>
+
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{BP_ID}" />
+                    <Text text="{COMPANY_NAME}" />
+                    <Text text="{EMAIL_ADDRESS}" />
+                    <Text text="{PHONE_NUMBER}" />
+                    
+                    <!-- Expanded fields -->
+                    <Text text="{ADDRESS_GUID/CITY}" />
+                    <Text text="{ADDRESS_GUID/COUNTRY}" />
+                    <Text text="{ADDRESS_GUID/STREET}" />
+                    <HBox justifyContent="End">
+                    <Button 
+                        icon="sap-icon://edit" 
+                        type="Transparent" 
+                        press="onEditPress" 
+                        tooltip="Update Record" class="sapUiTinyMarginEnd"/>
+                    <Button 
+                        icon="sap-icon://delete" 
+                        type="Reject" 
+                        press="onDeletePress" 
+                        tooltip="Delete Record" />
+                </HBox>
+                </cells>
+            </ColumnListItem>
+        </items>
+
+    </Table>
+</l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+
+            <l:BlockLayoutRow id="row2">
+                <!-- <l:BlockLayoutCell id="block3" title="Block 3">
+                    <Text id="text3" text="Another block here" />
+                </l:BlockLayoutCell> -->
+            </l:BlockLayoutRow>
+        </l:BlockLayout>
+    </content>
+    </Panel>
+    </Page>
+    </mvc:View>

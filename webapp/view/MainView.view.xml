@@ -1,7 +1,8 @@
 <mvc:View controllerName="joshi.project1trial.controller.MainView"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:l="sap.ui.layout">
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f">
     <Page id='page1'>
      <customHeader>
              <Toolbar>
@@ -10,11 +11,14 @@
         <ToolbarSpacer/>
     </Toolbar>
     </customHeader>
-  <mvc:View
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m"
-  xmlns:f="sap.f">
-
+<IconTabHeader mode="Inline">
+    <items>
+        <IconTabFilter key="info" text="Info" />
+        <IconTabFilter key="attachments" text="Attachments" count="3" />
+        <IconTabFilter key="notes" text="Notes" count="12" />
+        <IconTabFilter key="people" text="People"/>
+    </items>
+</IconTabHeader>
  <FlexBox
   wrap="Wrap"
   justifyContent="Start"
@@ -34,8 +38,6 @@
   </items>
 
 </FlexBox>
-
-</mvc:View>
     </Page>
 </mvc:View>
 
