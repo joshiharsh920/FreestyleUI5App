@@ -12,6 +12,24 @@ sap.ui.define([
             window.oController = this;
 
         },
+
+        onAfterRendering() {
+            var oModel = this.getView().getModel("sapModel");
+
+            oModel.read("/ZTESTHARSHDemo", {
+                success: function (oData) {
+
+                    // FIX: flatten structure
+                    var oJSONModel = new sap.ui.model.json.JSONModel();
+                    oJSONModel.setData({
+                        results: oData.results
+                    });
+
+                    this.getView().setModel(oJSONModel, "orders");
+                }.bind(this)
+            });
+        },
+
         onCreatePress(oEvent) {
             const oView = this.getView();
 
@@ -29,16 +47,6 @@ sap.ui.define([
 
         onCreateCancel() {
             this._oDialog.close();
-            var oModel = this.getView().getModel("sapModel");
-
-            oModel.read("/ZTESTHARSHDemo", {
-                success: function (oData, oResponse) {
-                    console.log(oData);
-                },
-                error: function (oError, oResponse) {
-                    console.error(oError);
-                }
-            });
         },
 
         async onCreateSubmit() {
@@ -195,6 +203,76 @@ sap.ui.define([
             this.byId("street").setValue(oContext.getProperty("ADDRESS_GUID/STREET"));
 
             this._oEditContext = oContext;
+        },
+        onOpenCreate: function () {
+            if (!this._oDialog) {
+                this._oDialog = sap.ui.xmlfragment(
+                    "joshi.project1trial.fragment.CreateDialog",
+                    this
+                );
+                this.getView().addDependent(this._oDialog);
+
+
+            }
+            // model for input
+            this._oDialog.setModel(
+                new sap.ui.model.json.JSONModel({
+                    Orderid: "",
+                    Customerid: "",
+                    Customername: "",
+                    Orderstatus: "",
+                    Address: ""
+                }),
+                "new"
+            );
+            this._oDialog.open();
+        },
+
+        onCloseDialog: function () {
+            this._oDialog.close();
+        },
+        onCreate: function () {
+
+            var oDialog = this._oDialog;
+            var oData = oDialog.getModel("new").getData();
+
+            var oModel = this.getView().getModel("sapModel");
+
+            oModel.create("/ZTESTHARSHDemo", oData, {
+
+                success: function (oData, oResponse) {
+                    sap.m.MessageToast.show("Created successfully");
+
+                    oDialog.close();
+
+                    // refresh data
+                    this._loadData();
+
+                }.bind(this),
+
+                error: function (oError, oResponse) {
+                    sap.m.MessageBox.error("Create failed");
+                }
+
+            });
+        },
+
+        _loadData: function () {
+
+            var oModel = this.getView().getModel("sapModel");
+
+            oModel.read("/ZTESTHARSHDemo", {
+                success: function (oData) {
+
+                    var oJSONModel = new sap.ui.model.json.JSONModel();
+                    oJSONModel.setData({
+                        results: oData.results
+                    });
+
+                    this.getView().setModel(oJSONModel, "orders");
+
+                }.bind(this)
+            });
         }
 
     });

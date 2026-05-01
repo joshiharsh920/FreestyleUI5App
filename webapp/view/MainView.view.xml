@@ -2,91 +2,40 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout">
-    <Panel id="mainPanel" expandable="true" class="sapUiContentPadding sapUiMediumMarginTop" headerText="Table for CAP service">
-    <content>
-        <l:BlockLayout id="blockLayout" class="sapUiBlockLayoutCustom">
-            <l:BlockLayoutRow id="row1">
-           <l:BlockLayoutCell id="block1" title="Business Partners">
-    <Table
-        id="bpTable"
-        items="{
-            path: '/BusinessPartnerSet',
-            parameters: {
-                $expand: 'ADDRESS_GUID'
-            }
-        }"
-         growing="true"
-    
-        growingThreshold="5">
- <headerToolbar>
-        <Toolbar>
-            <Title text="Business Partners" />
+    <Page id='page1'>
+     <customHeader>
+             <Toolbar>
+        <ToolbarSpacer/>
+        <Title text="Learning Application" level="H1"/>
+        <ToolbarSpacer/>
+    </Toolbar>
+    </customHeader>
+  <mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:f="sap.f">
 
-            <ToolbarSpacer />
-          <SearchField 
-          width="30%" 
-          search=".onSearch" 
-          placeholder="Search by Company or City..."/>
-            <Button
-                text="Create"
-                type="Emphasized"
-                icon="sap-icon://add"
-                press="onCreatePress" />
-        </Toolbar>
-    </headerToolbar>
+ <FlexBox
+  wrap="Wrap"
+  justifyContent="Start"
+  alignItems="Start"
+  renderType="Div">
 
-        <columns>
-            <Column><Text text="BP ID" /></Column>
-            <Column><Text text="Company" /></Column>
-            <Column><Text text="Email" /></Column>
-            <Column><Text text="Phone" /></Column>
-            <Column><Text text="City" /></Column>
-            <Column><Text text="Country" /></Column>
-            <Column><Text text="Street" /></Column>
-            <Column hAlign="End">
-            <Text text="Actions" />
-        </Column>
-        </columns>
+  <items>
+    <GenericTile
+      class="sapUiSmallMargin"
+      header="Customers"
+      press="onTilePress" />
 
-        <items>
-            <ColumnListItem>
-                <cells>
-                    <Text text="{BP_ID}" />
-                    <Text text="{COMPANY_NAME}" />
-                    <Text text="{EMAIL_ADDRESS}" />
-                    <Text text="{PHONE_NUMBER}" />
-                    
-                    <!-- Expanded fields -->
-                    <Text text="{ADDRESS_GUID/CITY}" />
-                    <Text text="{ADDRESS_GUID/COUNTRY}" />
-                    <Text text="{ADDRESS_GUID/STREET}" />
-                    <HBox justifyContent="End">
-                    <Button 
-                        icon="sap-icon://edit" 
-                        type="Transparent" 
-                        press="onEditPress" 
-                        tooltip="Update Record" class="sapUiTinyMarginEnd"/>
-                    <Button 
-                        icon="sap-icon://delete" 
-                        type="Reject" 
-                        press="onDeletePress" 
-                        tooltip="Delete Record" />
-                </HBox>
-                </cells>
-            </ColumnListItem>
-        </items>
+    <GenericTile
+      class="sapUiSmallMargin"
+      header="Orders"
+      press="onTilePress" />
+  </items>
 
-    </Table>
-</l:BlockLayoutCell>
-            </l:BlockLayoutRow>
+</FlexBox>
 
-            <l:BlockLayoutRow id="row2">
-                <!-- <l:BlockLayoutCell id="block3" title="Block 3">
-                    <Text id="text3" text="Another block here" />
-                </l:BlockLayoutCell> -->
-            </l:BlockLayoutRow>
-        </l:BlockLayout>
-    </content>
-    </Panel>
+</mvc:View>
+    </Page>
 </mvc:View>
 
