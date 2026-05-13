@@ -25,6 +25,9 @@ sap.ui.define([
                     var oJson = new sap.ui.model.json.JSONModel(oData.results);
                     this.getView().setModel(oJson, "tabsModel");
                     this.onTabSelect();
+                }.bind(this),
+                error: function (oError) {
+                    sap.m.MessageToast.show("Error occurred while fetching data");
                 }.bind(this)
             });
         },
