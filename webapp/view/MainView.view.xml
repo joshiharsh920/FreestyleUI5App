@@ -2,41 +2,63 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
-    xmlns:f="sap.f">
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
     <Page id='page1'>
      <customHeader>
              <Toolbar>
         <ToolbarSpacer/>
-        <Title text="Learning Application" level="H1"/>
+        <Title text="Invenio Application" level="H1"/>
         <ToolbarSpacer/>
     </Toolbar>
     </customHeader>
-<IconTabHeader mode="Inline">
+<IconTabHeader
+    mode="Inline"
+    select="onTabSelect"
+    items="{
+        path: 'tabsModel>/'
+    }">
+
     <items>
-        <IconTabFilter key="info" text="Info" />
-        <IconTabFilter key="attachments" text="Attachments" count="3" />
-        <IconTabFilter key="notes" text="Notes" count="12" />
-        <IconTabFilter key="people" text="People"/>
+        <IconTabFilter
+            key="{tabsModel>ObjectId}"
+            text="{tabsModel>TabText}"
+            count="{tabsModel>TabCount}"
+            icon="{tabsModel>TabIcon}"
+            visible="{= ${tabsModel>IsVisible} === 'Y'}" />
     </items>
+
 </IconTabHeader>
  <FlexBox
-  wrap="Wrap"
-  justifyContent="Start"
-  alignItems="Start"
-  renderType="Div">
+    wrap="Wrap"
+    justifyContent="Start"
+    alignItems="Start"
+    items="{
+        path: 'tileModel>/'
+    }">
+    <items>
+        <GenericTile
+            class="sapUiSmallMargin"
+            header="{tileModel>TileTitle}"
+            press="onTilePress">
 
-  <items>
-    <GenericTile
-      class="sapUiSmallMargin"
-      header="Customers"
-      press="onTilePress" />
+            <tileContent>
+                <TileContent>
+                      <content>
+                            <VBox>
+                    <core:Icon
+                        src="{tileModel>Icon}"
+                        size="2rem" />
 
-    <GenericTile
-      class="sapUiSmallMargin"
-      header="Orders"
-      press="onTilePress" />
-  </items>
+                    <Text text="{tileModel>TileCount}" />
+                </VBox>
+                        </content>
 
+                </TileContent>
+            </tileContent>
+
+        </GenericTile>
+    </items>
 </FlexBox>
     </Page>
 </mvc:View>

@@ -4,13 +4,54 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox",
     "sap/m/MessageToast"
-], (Controller, Filter, FilterOperator, MessageBox, MessageToast) => {
+], (Controller, UIComponent, Filter, FilterOperator, MessageBox, MessageToast) => {
     "use strict";
 
     return Controller.extend("joshi.project1trial.controller.MainView", {
         onInit() {
             window.oController = this;
+            // sap.ui.core.UIComponent.prototype.init.apply(this, arguments);
+            // this.getRouter().initialize();
+        },
 
+        onBeforeRendering() {
+            var oModel = this.getView().getModel("sapModel");
+
+            oModel.read("/ZITBDATASet", {
+                urlParameters: {
+                    "$expand": "ZTILESETSet"
+                },
+                success: function (oData) {
+                    var oJson = new sap.ui.model.json.JSONModel(oData.results);
+                    this.getView().setModel(oJson, "tabsModel");
+                    this.onTabSelect();
+                }.bind(this)
+            });
+        },
+
+        onTabSelect: function (oEvent) {
+            if (oEvent)
+                var sKey = oEvent.getParameter("key");
+            else
+                var sKey = "1001"; // default key for initial load
+
+            var aTabs = this.getView().getModel("tabsModel").getData();
+
+            var oSelectedTab = aTabs.find(function (tab) {
+                return tab.ObjectId === sKey;
+            });
+
+            oSelectedTab.ZTILESETSet.results.forEach(function (item) {
+                if (item.Icon) {
+                    item.Icon = item.Icon.toLowerCase().replace('sap-icon://'.toUpperCase(), 'sap-icon://');
+                }
+            });
+            // Set tiles for selected tab
+            var oTileModel = new sap.ui.model.json.JSONModel(
+                oSelectedTab.ZTILESETSet.results
+            );
+
+            this.getView().setModel(oTileModel, "tileModel");
         },
 
         onAfterRendering() {
@@ -273,6 +314,13 @@ sap.ui.define([
 
                 }.bind(this)
             });
+        },
+
+        onTilePress: function (oEvent) {
+            var oTile = oEvent.getSource();
+            var sTitle = oTile.getHeader();
+
+            this.getOwnerComponent().getRouter().navTo("CustomerRegistration", { customerId: "1023123" })
         }
 
     });

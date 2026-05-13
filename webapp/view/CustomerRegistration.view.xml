@@ -1,0 +1,14 @@
+<mvc:View controllerName="joshi.project1trial.controller.CustomerRegistration"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    <Page id="CustomerRegistration">
+        <content>
+        
+        <Label text="First Name" labelFor="firstNameInput"/>
+       
+        </content>
+    </Page>
+</mvc:View>

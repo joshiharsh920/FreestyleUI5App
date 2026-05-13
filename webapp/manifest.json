@@ -113,12 +113,23 @@
           "target": [
             "TargetMainView"
           ]
+        },
+        {
+          "name": "CustomerRegistration",
+          "pattern": "CustomerRegistration/{customerId}",
+          "target": [
+            "TargetCustomerRegistration"
+          ]
         }
       ],
       "targets": {
         "TargetMainView": {
           "id": "MainView",
-          "name": "MainView"
+          "viewName": "MainView"
+        },
+        "TargetCustomerRegistration": {
+          "id": "CustomerRegistration",
+          "viewName": "CustomerRegistration"
         }
       }
     },
