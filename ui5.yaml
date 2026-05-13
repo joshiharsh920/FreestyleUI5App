@@ -20,4 +20,4 @@ server:
             url: http://localhost:4004
 
           - path: /sap
-            url: http://ibssapserv52.ap-south-1.compute.amazonaws.com:8010
+            destination: onPremiseService
