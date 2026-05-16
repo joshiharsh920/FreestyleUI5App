@@ -8,3 +8,5 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("joshi.project1trial.controller.TablesView", {
+    });
+});

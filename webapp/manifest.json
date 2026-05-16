@@ -115,8 +115,8 @@
           ]
         },
         {
-          "name": "CustomerRegistration",
-          "pattern": "CustomerRegistration/{customerId}",
+          "name": "CUSTOMER REGISTRATION",
+          "pattern": "customerRegistration/:customerId:",
           "target": [
             "TargetCustomerRegistration"
           ]
@@ -129,7 +129,7 @@
         },
         "TargetCustomerRegistration": {
           "id": "CustomerRegistration",
-          "viewName": "CustomerRegistration"
+          "viewName": "customer/csreg"
         }
       }
     },

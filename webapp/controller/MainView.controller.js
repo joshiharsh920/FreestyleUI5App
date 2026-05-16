@@ -36,7 +36,7 @@ sap.ui.define([
             if (oEvent)
                 var sKey = oEvent.getParameter("key");
             else
-                var sKey = "1001"; // default key for initial load
+                var sKey = "1001";
 
             var aTabs = this.getView().getModel("tabsModel").getData();
 
@@ -323,8 +323,19 @@ sap.ui.define([
             var oTile = oEvent.getSource();
             var sTitle = oTile.getHeader();
 
-            this.getOwnerComponent().getRouter().navTo("CustomerRegistration", { customerId: "1023123" })
-        }
+
+            var oModel = this.getView().getModel("sapModel");
+
+            oModel.read("/FORMDATASet", {
+                success: function (oData) {
+                    sap.m.MessageToast.show("Success while fetching data");
+                    this.getOwnerComponent().getRouter().navTo(sTitle);
+                }.bind(this),
+                error: function (oError) {
+                    sap.m.MessageToast.show("Error occurred while fetching data");
+                }.bind(this)
+            });
+        },
 
     });
 });

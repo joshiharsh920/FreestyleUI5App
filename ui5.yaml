@@ -16,8 +16,8 @@ server:
           url: https://ui5.sap.com
 
         backend:
-          - path: /odata
-            url: http://localhost:4004
-
-          - path: /sap
+       
+          - path: /sap/opu/odata/sap/ZTEST1_HARSH_DEMO_SRV
+            url: http://ibssapserv52.ap-south-1.compute.amazonaws.com:8010
+            client: '410'
             destination: onPremiseService
