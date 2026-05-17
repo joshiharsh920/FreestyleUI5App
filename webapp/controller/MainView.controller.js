@@ -323,18 +323,7 @@ sap.ui.define([
             var oTile = oEvent.getSource();
             var sTitle = oTile.getHeader();
 
-
-            var oModel = this.getView().getModel("sapModel");
-
-            oModel.read("/FORMDATASet", {
-                success: function (oData) {
-                    sap.m.MessageToast.show("Success while fetching data");
-                    this.getOwnerComponent().getRouter().navTo(sTitle);
-                }.bind(this),
-                error: function (oError) {
-                    sap.m.MessageToast.show("Error occurred while fetching data");
-                }.bind(this)
-            });
+            this.getOwnerComponent().getRouter().navTo(sTitle);
         },
 
     });

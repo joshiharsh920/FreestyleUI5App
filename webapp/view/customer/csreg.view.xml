@@ -25,11 +25,17 @@
 										validated="true"
                                         complete="fnStep1Complete">
   <VBox class="sapUiMediumMargin">
+
+  <HBox alignItems="Center" class="sapUiSmallMarginBottom">
+        <Label text="Customer ID" width="120px" required="true" />
+        <Input value="{csregModel>/Customerid}" placeholder="Enter Customer ID" class="sapUiMediumMarginEnd" width="200px" />
+
+    </HBox>
    
 <!-- Row 4: ID Type & ID Number -->
     <HBox alignItems="Center" class="sapUiSmallMarginBottom">
         <Label text="ID Type" width="120px" />
-        <Select width="200px" class="sapUiMediumMarginEnd">
+        <Select width="200px" selectedKey="{csregModel>/Id}" class="sapUiMediumMarginEnd">
             <items>
                 <core:Item key="PAN" text="PAN Card" />
                 <core:Item key="AADHAR" text="Aadhar Card" />
@@ -38,26 +44,26 @@
         </Select>
         
         <Label text="ID Number" width="120px" />
-        <Input placeholder="Enter ID number" width="200px" />
+        <Input value="{csregModel>/Idnumber}" placeholder="Enter ID number" width="200px" />
     </HBox>
 
 
     <!-- Row 1: First Name & Last Name -->
     <HBox alignItems="Center" class="sapUiSmallMarginBottom">
         <Label text="First Name" width="120px" required="true" />
-        <Input placeholder="John" class="sapUiMediumMarginEnd" width="200px" />
+        <Input value="{csregModel>/Zfirstname}" placeholder="John" class="sapUiMediumMarginEnd" width="200px" />
         
         <Label text="Last Name" width="120px" required="true" />
-        <Input placeholder="Doe" width="200px" />
+        <Input value="{csregModel>/Zlastname}" placeholder="Doe" width="200px" />
     </HBox>
 
     <!-- Row 2: Age & Religion -->
     <HBox alignItems="Center" class="sapUiSmallMarginBottom">
         <Label text="Age" width="120px" />
-        <Input type="Number" placeholder="00" class="sapUiMediumMarginEnd" width="200px" />
+        <Input type="Number" value="{csregModel>/Age}" placeholder="00" class="sapUiMediumMarginEnd" width="200px" />
         
         <Label text="Religion" width="120px" />
-        <ComboBox placeholder="Select religion" width="200px">
+        <ComboBox selectedKey="{csregModel>/Religion}" placeholder="Select religion" width="200px">
             <items>
                 <core:Item key="Hindu" text="Hindu" />
                 <core:Item key="Muslim" text="Muslim" />
@@ -70,22 +76,22 @@
     <!-- Row 3: Email & Phone -->
     <HBox alignItems="Center" class="sapUiSmallMarginBottom">
         <Label text="Email Address" width="120px" />
-        <Input type="Email" placeholder="email@example.com" class="sapUiMediumMarginEnd" width="200px" />
+        <Input type="Email" value="{csregModel>/Email}" placeholder="email@example.com" class="sapUiMediumMarginEnd" width="200px" />
         
         <Label text="Phone Number" width="120px" />
-        <Input type="Tel" placeholder="+1..." width="200px" />
+        <Input type="Tel" value="{csregModel>/Phonenumber}" placeholder="+1..." width="200px" />
     </HBox>
 
     <!-- Row 5: Full Address (TextArea) -->
     <HBox alignItems="Start" class="sapUiSmallMarginBottom">
         <Label text="Home Address" width="120px" class="sapUiSmallMarginTop" />
-        <TextArea rows="3" width="545px" placeholder="Enter complete residential address..." />
+        <TextArea rows="3" width="545px" value="{csregModel>/Homeadd}" placeholder="Enter complete residential address..." />
     </HBox>
 
     <!-- Row 6: Customer Remarks -->
     <HBox alignItems="Start">
         <Label text="Remarks" width="120px" class="sapUiSmallMarginTop" />
-        <TextArea rows="2" width="545px" placeholder="Any additional notes..." />
+        <TextArea rows="2" width="545px" value="{csregModel>/Remarks}" placeholder="Any additional notes..." />
     </HBox>
 </VBox>
                                         </WizardStep>
