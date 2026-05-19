@@ -12,6 +12,12 @@
 				id="wizardContentPag">
 				<customHeader>
           <OverflowToolbar>
+          <Button
+        type="Back"
+        icon="sap-icon://home"
+        press="onNavigateToHome"
+        tooltip="Go to Home"
+      />
             <ToolbarSpacer />
             <Title text="Customer Registration" textAlign="Center" titleStyle="H4" />
             <ToolbarSpacer />

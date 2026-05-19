@@ -19,11 +19,21 @@ sap.ui.define([
             window.oController = this;
             const oArgs = oEvent.getParameter("arguments");
 
-            const id = oArgs.id;
-            const name = oArgs.name;
+            debugger;
+            var oModel = this.getView().getModel("sapModel");
 
-            console.log("ID:", id);
-            console.log("Name:", name);
+            oModel.read("/ZFORMDATASet", {
+                success: function (oData) {
+                    oController.stepNo = oData.results[0].Stepno;
+                    oController.formType = oData.results[0].Formtype;
+                    oController.Formid = oData.results[0].Formid;
+
+                }.bind(this),
+                error: function (oError) {
+                    sap.m.MessageToast.show("Error occurred while fetching data");
+                }.bind(this)
+            });
+
 
             var oCSRegModel = new sap.ui.model.json.JSONModel({
                 Customerid: "",
@@ -42,6 +52,12 @@ sap.ui.define([
 
             oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(oCSRegModel, "csregModel");
+
+
+        },
+        onNavigateToHome: function () {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteMainView");
         },
         fnStepActivate: function () {
             MessageToast.show("Step 2 Activated");
@@ -53,6 +69,7 @@ sap.ui.define([
             regModel.Phonenumber = +regModel.Phonenumber;
             regModel.Age = +regModel.Age;
             regModel.Idnumber = +regModel.Idnumber;
+            regModel.Formid = oController.Formid;
             oModel.create("/CustomeTileSet", this.getView().getModel("csregModel").getData(), {
                 success: function (oData, oResponse) {
                     MessageBox.success("Customer ID created successfully!");
