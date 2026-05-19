@@ -115,8 +115,8 @@
           ]
         },
         {
-          "name": "CUSTOMER REGISTRATION",
-          "pattern": "customerRegistration/:customerId:",
+          "name": "CSREG",
+          "pattern": "customerRegistration/:formId:",
           "target": [
             "TargetCustomerRegistration"
           ]

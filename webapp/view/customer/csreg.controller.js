@@ -11,30 +11,13 @@ sap.ui.define([
 
         onInit: function () {
             this.getOwnerComponent().getRouter()
-                .getRoute("CUSTOMER REGISTRATION")
+                .getRoute("CSREG")
                 .attachPatternMatched(this._onRouteMatched, this);
         },
 
         _onRouteMatched: function (oEvent) {
             window.oController = this;
             const oArgs = oEvent.getParameter("arguments");
-
-            debugger;
-            var oModel = this.getView().getModel("sapModel");
-
-            oModel.read("/ZFORMDATASet", {
-                success: function (oData) {
-                    oController.stepNo = oData.results[0].Stepno;
-                    oController.formType = oData.results[0].Formtype;
-                    oController.Formid = oData.results[0].Formid;
-
-                }.bind(this),
-                error: function (oError) {
-                    sap.m.MessageToast.show("Error occurred while fetching data");
-                }.bind(this)
-            });
-
-
             var oCSRegModel = new sap.ui.model.json.JSONModel({
                 Customerid: "",
                 Id: "AADHAR",
@@ -49,6 +32,21 @@ sap.ui.define([
                 Remarks: ""
             }
             );
+            debugger;
+            var oModel = this.getView().getModel("sapModel");
+            oModel.read("/CustomeTileSet", {
+                success: function (oData, oResponse) {
+                    oController.Formid = oData.results[0].Formid;
+                    oCSRegModel.setData(oData.results[0]);
+                    oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+                    this.getView().setModel(oCSRegModel, "csregModel");
+                    MessageToast.success("Customer ID created successfully!");
+                }.bind(this),
+                error: function (oError, oResponse) {
+                }.bind(this)
+            }
+            );
+
 
             oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(oCSRegModel, "csregModel");
@@ -69,7 +67,7 @@ sap.ui.define([
             regModel.Phonenumber = +regModel.Phonenumber;
             regModel.Age = +regModel.Age;
             regModel.Idnumber = +regModel.Idnumber;
-            regModel.Formid = oController.Formid;
+            regModel.Formid = oController.Formid.toString();
             oModel.create("/CustomeTileSet", this.getView().getModel("csregModel").getData(), {
                 success: function (oData, oResponse) {
                     MessageBox.success("Customer ID created successfully!");

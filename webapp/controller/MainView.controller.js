@@ -323,7 +323,26 @@ sap.ui.define([
             var oTile = oEvent.getSource();
             var sTitle = oTile.getHeader();
 
-            this.getOwnerComponent().getRouter().navTo(sTitle);
+            var oModel = this.getView().getModel("sapModel");
+
+            oModel.read("/ZFORMDATASet", {
+                success: function (oData) {
+                    oController.stepNo = oData.results[0].Stepno;
+                    oController.formType = oData.results[0].Formtype;
+                    oController.Formid = oData.results[0].Formid;
+
+                    sTitle = oController.formType;
+                    this.getOwnerComponent().getRouter().navTo(sTitle, {
+                        formId: oController.Formid
+                    });
+
+                }.bind(this),
+                error: function (oError) {
+                    sap.m.MessageToast.show("Error occurred while fetching data");
+                }.bind(this)
+            });
+
+
         },
 
     });
