@@ -5,6 +5,7 @@ sap.ui.define([
 
   return BaseController.extend("joshi.project1trial.controller.App", {
       onInit() {
+        
       }
   });
 });
