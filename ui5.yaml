@@ -20,4 +20,4 @@ server:
           - path: /sap/opu/odata/sap/ZTEST1_HARSH_DEMO_SRV
             url: http://ibssapserv52.ap-south-1.compute.amazonaws.com:8010
             client: '410'
-            destination: onPremiseService
+            destination: onPremService

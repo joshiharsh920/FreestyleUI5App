@@ -4,8 +4,7 @@ sap.ui.define([
   "use strict";
 
   return BaseController.extend("joshi.project1trial.controller.App", {
-      onInit() {
-        
+      onInit() { 
       }
   });
 });
