@@ -32,7 +32,6 @@ sap.ui.define([
                 Remarks: ""
             }
             );
-            debugger;
             var oModel = this.getView().getModel("sapModel");
             oModel.read("/CustomeTileSet", {
                 success: function (oData, oResponse) {

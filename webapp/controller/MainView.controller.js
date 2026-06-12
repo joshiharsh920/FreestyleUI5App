@@ -64,20 +64,20 @@ sap.ui.define([
         },
 
         onAfterRendering() {
-            var oModel = this.getView().getModel("sapModel");
+            // var oModel = this.getView().getModel("sapModel");
 
-            oModel.read("/ZTESTHARSHDemo", {
-                success: function (oData) {
+            // oModel.read("/ZTESTHARSHDemo", {
+            //     success: function (oData) {
 
-                    // FIX: flatten structure
-                    var oJSONModel = new sap.ui.model.json.JSONModel();
-                    oJSONModel.setData({
-                        results: oData.results
-                    });
+            //         // FIX: flatten structure
+            //         var oJSONModel = new sap.ui.model.json.JSONModel();
+            //         oJSONModel.setData({
+            //             results: oData.results
+            //         });
 
-                    this.getView().setModel(oJSONModel, "orders");
-                }.bind(this)
-            });
+            //         this.getView().setModel(oJSONModel, "orders");
+            //     }.bind(this)
+            // });
         },
 
         onCreatePress(oEvent) {
