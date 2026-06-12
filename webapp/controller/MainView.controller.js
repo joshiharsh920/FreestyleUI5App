@@ -17,6 +17,12 @@ sap.ui.define([
         onBeforeRendering() {
             var oModel = this.getView().getModel("sapModel");
 
+            var oTabsModel = this.getView().getModel("tabsModel");
+
+    if (oTabsModel && oTabsModel.getData().length > 0) {
+        return;
+    }
+
             oModel.read("/ZITBDATASet", {
                 urlParameters: {
                     "$expand": "ZTILESETSet"
