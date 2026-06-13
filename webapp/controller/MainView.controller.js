@@ -329,6 +329,7 @@ sap.ui.define([
             var oTile = oEvent.getSource();
             var sTitle = oTile.getHeader();
 
+            if(sTitle == "CUSTOMER REGISTRATION"){
             var oModel = this.getView().getModel("sapModel");
 
             oModel.read("/ZFORMDATASet", {
@@ -348,7 +349,9 @@ sap.ui.define([
                 }.bind(this)
             });
 
-
+        }else{
+            this.getOwnerComponent().getRouter().navTo("CAPService");
+        }
         },
 
     });

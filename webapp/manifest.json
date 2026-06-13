@@ -21,7 +21,7 @@
         "type": "OData",
         "settings": {
           "annotations": [],
-          "localUri": "localService/mainService/metadata.xml",
+          "localUri": "",
           "odataVersion": "4.0"
         }
       },
@@ -120,6 +120,13 @@
           "target": [
             "TargetCustomerRegistration"
           ]
+        },
+        {
+          "name": "CAPService",
+          "pattern": "capService",
+          "target": [
+            "TargetCAPService"
+          ]
         }
       ],
       "targets": {
@@ -130,6 +137,10 @@
         "TargetCustomerRegistration": {
           "id": "CustomerRegistration",
           "viewName": "customer/csreg"
+        },
+        "TargetCAPService": {
+          "id": "CAPService",
+          "viewName": "TablesView"
         }
       }
     },

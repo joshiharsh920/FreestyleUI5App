@@ -16,8 +16,10 @@ server:
           url: https://ui5.sap.com
 
         backend:
-       
           - path: /sap/opu/odata/sap/ZTEST1_HARSH_DEMO_SRV
             url: http://ibssapserv52.ap-south-1.compute.amazonaws.com:8010
-            client: '410'
+            client: "410"
             destination: onPremService
+
+          - path: /odata/v4/CatalogService
+            url: https://port4004-workspaces-ws-wxf84.us10.trial.applicationstudio.cloud.sap

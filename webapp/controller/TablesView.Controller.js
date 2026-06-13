@@ -8,5 +8,8 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("joshi.project1trial.controller.TablesView", {
+        onInit: function () {
+            var oModel = this.getView().getModel();
+        },
     });
 });
