@@ -4,6 +4,7 @@
 
     <Dialog id="createBPDialog" title="Create Business Partner" stretch="true">
 
+
         <content>
             <VBox class="sapUiSmallMargin">
 
