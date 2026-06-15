@@ -1,9 +1,10 @@
 <mvc:View
-    controllerName="joshi.project1trial.controller.MainView"
+    controllerName="joshi.project1trial.controller.TablesView"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
 >
     <Page id='page01'>
         <Panel
