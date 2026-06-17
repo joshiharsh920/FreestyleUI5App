@@ -50,6 +50,8 @@ sap.ui.define([
             oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(oCSRegModel, "csregModel");
 
+            this.getView().byId('CreateProductWizard2').discardProgress(this.getView().byId('CreateProductWizard2').getSteps()[0]);
+            this.getView().byId('CreateProductWizard2').goToStep(this.getView().byId('CreateProductWizard2').getSteps()[0]);
 
         },
         onNavigateToHome: function () {

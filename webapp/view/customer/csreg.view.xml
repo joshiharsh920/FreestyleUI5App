@@ -1,126 +1,281 @@
 <mvc:View
-		height="100%"
-		controllerName="joshi.project1trial.view.customer.csreg"
-		xmlns:form="sap.ui.layout.form"
-		xmlns:core="sap.ui.core"
-		xmlns:u="sap.ui.unified"
-		xmlns:mvc="sap.ui.core.mvc"
-		xmlns="sap.m">
-		<NavContainer id="wizardNavContainer2">
-			<pages>
-				<Page
-				id="wizardContentPag">
-				<customHeader>
-          <OverflowToolbar>
-          <Button
-        type="Back"
-        icon="sap-icon://home"
-        press="onNavigateToHome"
-        tooltip="Go to Home"
-      />
-            <ToolbarSpacer />
-            <Title text="Customer Registration" textAlign="Center" titleStyle="H4" />
-            <ToolbarSpacer />
-           </OverflowToolbar>
-         </customHeader>
-					<content>
-						<Wizard id="CreateProductWizard2" class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
-								complete=".wizardCompletedHandler">
-							<WizardStep id="ProductTypeStep2"
-										title="Customer Details"
-										validated="true"
-                                        complete="fnStep1Complete">
-  <VBox class="sapUiMediumMargin">
+    height="100%"
+    controllerName="joshi.project1trial.view.customer.csreg"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <NavContainer id="wizardNavContainer2">
+        <pages>
+            <Page id="wizardContentPag">
+                <customHeader>
+                    <OverflowToolbar>
+                        <Button
+                            type="Back"
+                            icon="sap-icon://home"
+                            press="onNavigateToHome"
+                            tooltip="Go to Home"
+                        />
+                        <ToolbarSpacer />
+                        <Title
+                            text="Customer Registration"
+                            textAlign="Center"
+                            titleStyle="H4"
+                        />
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </customHeader>
+                <content>
+                    <Wizard
+                        id="CreateProductWizard2"
+                        class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+                        complete=".wizardCompletedHandler"
+                    >
+                        <WizardStep
+                            id="ProductTypeStep2"
+                            title="Customer Details"
+                            validated="true"
+                            complete="fnStep1Complete"
+                        >
+                            <VBox class="sapUiMediumMargin">
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Customer ID"
+                                        width="120px"
+                                        required="true"
+                                    />
+                                    <Input
+                                        value="{csregModel>/Customerid}"
+                                        placeholder="Enter Customer ID"
+                                        class="sapUiMediumMarginEnd"
+                                        width="200px"
+                                    />
+                                </HBox>
 
-  <HBox alignItems="Center" class="sapUiSmallMarginBottom">
-        <Label text="Customer ID" width="120px" required="true" />
-        <Input value="{csregModel>/Customerid}" placeholder="Enter Customer ID" class="sapUiMediumMarginEnd" width="200px" />
+                                <!-- Row 4: ID Type & ID Number -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="ID Type"
+                                        width="120px"
+                                    />
+                                    <Select
+                                        width="200px"
+                                        selectedKey="{csregModel>/Id}"
+                                        class="sapUiMediumMarginEnd"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                key="PAN"
+                                                text="PAN Card"
+                                            />
+                                            <core:Item
+                                                key="AADHAR"
+                                                text="Aadhar Card"
+                                            />
+                                            <core:Item
+                                                key="PASSPORT"
+                                                text="Passport"
+                                            />
+                                        </items>
+                                    </Select>
 
-    </HBox>
-   
-<!-- Row 4: ID Type & ID Number -->
-    <HBox alignItems="Center" class="sapUiSmallMarginBottom">
-        <Label text="ID Type" width="120px" />
-        <Select width="200px" selectedKey="{csregModel>/Id}" class="sapUiMediumMarginEnd">
-            <items>
-                <core:Item key="PAN" text="PAN Card" />
-                <core:Item key="AADHAR" text="Aadhar Card" />
-                <core:Item key="PASSPORT" text="Passport" />
-            </items>
-        </Select>
-        
-        <Label text="ID Number" width="120px" />
-        <Input value="{csregModel>/Idnumber}" placeholder="Enter ID number" width="200px" />
-    </HBox>
+                                    <Label
+                                        text="ID Number"
+                                        width="120px"
+                                    />
+                                    <Input
+                                        value="{csregModel>/Idnumber}"
+                                        placeholder="Enter ID number"
+                                        width="200px"
+                                    />
+                                </HBox>
 
+                                <!-- Row 1: First Name & Last Name -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="First Name"
+                                        width="120px"
+                                        required="true"
+                                    />
+                                    <Input
+                                        value="{csregModel>/Zfirstname}"
+                                        placeholder="John"
+                                        class="sapUiMediumMarginEnd"
+                                        width="200px"
+                                    />
 
-    <!-- Row 1: First Name & Last Name -->
-    <HBox alignItems="Center" class="sapUiSmallMarginBottom">
-        <Label text="First Name" width="120px" required="true" />
-        <Input value="{csregModel>/Zfirstname}" placeholder="John" class="sapUiMediumMarginEnd" width="200px" />
-        
-        <Label text="Last Name" width="120px" required="true" />
-        <Input value="{csregModel>/Zlastname}" placeholder="Doe" width="200px" />
-    </HBox>
+                                    <Label
+                                        text="Last Name"
+                                        width="120px"
+                                        required="true"
+                                    />
+                                    <Input
+                                        value="{csregModel>/Zlastname}"
+                                        placeholder="Doe"
+                                        width="200px"
+                                    />
+                                </HBox>
 
-    <!-- Row 2: Age & Religion -->
-    <HBox alignItems="Center" class="sapUiSmallMarginBottom">
-        <Label text="Age" width="120px" />
-        <Input type="Number" value="{csregModel>/Age}" placeholder="00" class="sapUiMediumMarginEnd" width="200px" />
-        
-        <Label text="Religion" width="120px" />
-        <ComboBox selectedKey="{csregModel>/Religion}" placeholder="Select religion" width="200px">
-            <items>
-                <core:Item key="Hindu" text="Hindu" />
-                <core:Item key="Muslim" text="Muslim" />
-                <core:Item key="Christian" text="Christian" />
-                <core:Item key="Sikh" text="Sikh" />
-            </items>
-        </ComboBox>
-    </HBox>
+                                <!-- Row 2: Age & Religion -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Age"
+                                        width="120px"
+                                    />
+                                    <Input
+                                        type="Number"
+                                        value="{csregModel>/Age}"
+                                        placeholder="00"
+                                        class="sapUiMediumMarginEnd"
+                                        width="200px"
+                                    />
 
-    <!-- Row 3: Email & Phone -->
-    <HBox alignItems="Center" class="sapUiSmallMarginBottom">
-        <Label text="Email Address" width="120px" />
-        <Input type="Email" value="{csregModel>/Email}" placeholder="email@example.com" class="sapUiMediumMarginEnd" width="200px" />
-        
-        <Label text="Phone Number" width="120px" />
-        <Input type="Tel" value="{csregModel>/Phonenumber}" placeholder="+1..." width="200px" />
-    </HBox>
+                                    <Label
+                                        text="Religion"
+                                        width="120px"
+                                    />
+                                    <ComboBox
+                                        selectedKey="{csregModel>/Religion}"
+                                        placeholder="Select religion"
+                                        width="200px"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                key="Hindu"
+                                                text="Hindu"
+                                            />
+                                            <core:Item
+                                                key="Muslim"
+                                                text="Muslim"
+                                            />
+                                            <core:Item
+                                                key="Christian"
+                                                text="Christian"
+                                            />
+                                            <core:Item
+                                                key="Sikh"
+                                                text="Sikh"
+                                            />
+                                        </items>
+                                    </ComboBox>
+                                </HBox>
 
-    <!-- Row 5: Full Address (TextArea) -->
-    <HBox alignItems="Start" class="sapUiSmallMarginBottom">
-        <Label text="Home Address" width="120px" class="sapUiSmallMarginTop" />
-        <TextArea rows="3" width="545px" value="{csregModel>/Homeadd}" placeholder="Enter complete residential address..." />
-    </HBox>
+                                <!-- Row 3: Email & Phone -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Email Address"
+                                        width="120px"
+                                    />
+                                    <Input
+                                        type="Email"
+                                        value="{csregModel>/Email}"
+                                        placeholder="email@example.com"
+                                        class="sapUiMediumMarginEnd"
+                                        width="200px"
+                                    />
 
-    <!-- Row 6: Customer Remarks -->
-    <HBox alignItems="Start">
-        <Label text="Remarks" width="120px" class="sapUiSmallMarginTop" />
-        <TextArea rows="2" width="545px" value="{csregModel>/Remarks}" placeholder="Any additional notes..." />
-    </HBox>
-</VBox>
-                                        </WizardStep>
-							<WizardStep id="customerFinancialDetails"
-							title="Finance Details" validated="true" activate="fnStep2Activate">
-							<MessageStrip text="This is second wizard step" showIcon="true"></MessageStrip>
-							</WizardStep>
-							<WizardStep id="customerReviewDetails"
-							title="Review Details" validated="true">
-							<MessageStrip text="This is third wizard step" showIcon="true"></MessageStrip>
-							</WizardStep>
-							<WizardStep id="nomineeDetails" title="Nominee Details" validated="true">
-							<MessageStrip text="This is fourth wizard step" showIcon="true"></MessageStrip>
-							</WizardStep>
-                                        </Wizard>
-                    </content>
-                </Page>
-				<Page
-				id="wizardSummaryPag2">
-					<content>
-						<Title text="Summary"/>
-					</content>
-				</Page>
-            </pages>
-        </NavContainer>
+                                    <Label
+                                        text="Phone Number"
+                                        width="120px"
+                                    />
+                                    <Input
+                                        type="Tel"
+                                        value="{csregModel>/Phonenumber}"
+                                        placeholder="+1..."
+                                        width="200px"
+                                    />
+                                </HBox>
+
+                                <!-- Row 5: Full Address (TextArea) -->
+                                <HBox
+                                    alignItems="Start"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Home Address"
+                                        width="120px"
+                                        class="sapUiSmallMarginTop"
+                                    />
+                                    <TextArea
+                                        rows="3"
+                                        width="545px"
+                                        value="{csregModel>/Homeadd}"
+                                        placeholder="Enter complete residential address..."
+                                    />
+                                </HBox>
+
+                                <!-- Row 6: Customer Remarks -->
+                                <HBox alignItems="Start">
+                                    <Label
+                                        text="Remarks"
+                                        width="120px"
+                                        class="sapUiSmallMarginTop"
+                                    />
+                                    <TextArea
+                                        rows="2"
+                                        width="545px"
+                                        value="{csregModel>/Remarks}"
+                                        placeholder="Any additional notes..."
+                                    />
+                                </HBox>
+                            </VBox>
+                        </WizardStep>
+                        <WizardStep
+                            id="customerFinancialDetails"
+                            title="Finance Details"
+                            validated="true"
+                            activate="fnStep2Activate"
+                        >
+                            <MessageStrip
+                                text="This is second wizard step"
+                                showIcon="true"
+                            />
+                        </WizardStep>
+                        <WizardStep
+                            id="customerReviewDetails"
+                            title="Review Details"
+                            validated="true"
+                        >
+                            <MessageStrip
+                                text="This is third wizard step"
+                                showIcon="true"
+                            />
+                        </WizardStep>
+                        <WizardStep
+                            id="productDetails"
+                            title="Product Details"
+                            validated="true"
+                        >
+                            <MessageStrip
+                                text="This is fourth wizard step"
+                                showIcon="true"
+                            />
+                        </WizardStep>
+                    </Wizard>
+                </content>
+            </Page>
+            <Page id="wizardSummaryPag2">
+                <content>
+                    <Title text="Summary" />
+                </content>
+            </Page>
+        </pages>
+    </NavContainer>
 </mvc:View>
