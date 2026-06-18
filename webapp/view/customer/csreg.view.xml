@@ -38,6 +38,7 @@
                             title="Customer Details"
                             validated="true"
                             complete="fnStep1Complete"
+                            activate="fnStep1Activate"
                         >
                             <VBox class="sapUiMediumMargin">
                                 <HBox

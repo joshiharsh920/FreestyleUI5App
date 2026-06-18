@@ -61,6 +61,9 @@ sap.ui.define([
         fnStepActivate: function () {
             MessageToast.show("Step 2 Activated");
         },
+        fnStep1Activate: function () {
+
+        },
         fnStep1Complete: function () {
             var oModel = this.getView().getModel("sapModel");
             var regModel = this.getView().getModel("csregModel").getData();
