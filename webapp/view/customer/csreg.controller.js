@@ -71,8 +71,9 @@ sap.ui.define([
             regModel.Phonenumber = +regModel.Phonenumber;
             regModel.Age = +regModel.Age;
             regModel.Idnumber = +regModel.Idnumber;
-            regModel.Formid = oController.Formid.toString();
-            oModel.create("/CustomeTileSet", this.getView().getModel("csregModel").getData(), {
+            regModel.Formid = +oController.Formid;
+            delete this.getView().getModel("csregModel").oData.__metadata;
+            oModel.create("/FORMRULES001Set", this.getView().getModel("csregModel").getData(), {
                 success: function (oData, oResponse) {
                     MessageBox.success("Customer ID created successfully!");
                 }.bind(this),
