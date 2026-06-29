@@ -34,7 +34,7 @@
                         complete=".wizardCompletedHandler"
                     >
                         <WizardStep
-                            id="ProductTypeStep2"
+                            id="CustomerStep1"
                             title="Customer Details"
                             validated="true"
                             complete="fnStep1Complete"
@@ -239,7 +239,7 @@
                             </VBox>
                         </WizardStep>
                         <WizardStep
-                            id="customerFinancialDetails"
+                            id="CustomerStep2"
                             title="Finance Details"
                             validated="true"
                             activate="fnStep2Activate"
@@ -250,7 +250,7 @@
                             />
                         </WizardStep>
                         <WizardStep
-                            id="customerReviewDetails"
+                            id="CustomerStep3"
                             title="Review Details"
                             validated="true"
                         >
@@ -260,7 +260,7 @@
                             />
                         </WizardStep>
                         <WizardStep
-                            id="productDetails"
+                            id="CustomerStep4"
                             title="Product Details"
                             validated="true"
                         >

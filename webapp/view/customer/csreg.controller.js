@@ -64,6 +64,10 @@ sap.ui.define([
         fnStep1Activate: function () {
 
         },
+        stepComplete: function (stepNo) {
+            var oModel = this.getView().getModel("sapModel");
+            
+        },
         fnStep1Complete: function () {
             var oModel = this.getView().getModel("sapModel");
             var regModel = this.getView().getModel("csregModel").getData();
@@ -72,6 +76,7 @@ sap.ui.define([
             regModel.Age = +regModel.Age;
             regModel.Idnumber = +regModel.Idnumber;
             regModel.Formid = +oController.Formid;
+            var Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
             delete this.getView().getModel("csregModel").oData.__metadata;
             oModel.create("/FORMRULES001Set", this.getView().getModel("csregModel").getData(), {
                 success: function (oData, oResponse) {

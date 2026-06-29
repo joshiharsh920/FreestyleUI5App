@@ -8,7 +8,7 @@
      <customHeader>
              <Toolbar>
         <ToolbarSpacer/>
-        <Title text="Invenio Application" level="H1"/>
+        <Title text="Customer Application" level="H1"/>
         <ToolbarSpacer/>
     </Toolbar>
     </customHeader>
