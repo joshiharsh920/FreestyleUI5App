@@ -66,19 +66,20 @@ sap.ui.define([
         },
         stepComplete: function (stepNo) {
             var oModel = this.getView().getModel("sapModel");
-            
-        },
-        fnStep1Complete: function () {
-            var oModel = this.getView().getModel("sapModel");
-            var regModel = this.getView().getModel("csregModel").getData();
-            regModel.Customerid = +regModel.Customerid;
-            regModel.Phonenumber = +regModel.Phonenumber;
-            regModel.Age = +regModel.Age;
-            regModel.Idnumber = +regModel.Idnumber;
-            regModel.Formid = +oController.Formid;
-            var Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
-            delete this.getView().getModel("csregModel").oData.__metadata;
-            oModel.create("/FORMRULES001Set", this.getView().getModel("csregModel").getData(), {
+
+            var regModel = new sap.ui.model.json.JSONModel();
+            if (stepNo === "1") {
+                delete this.getView().getModel("csregModel").oData.__metadata;
+                regModel.setData(this.getView().getModel("csregModel").getData());
+                regModel.Customerid = +regModel.Customerid;
+                regModel.Phonenumber = +regModel.Phonenumber;
+                regModel.Age = +regModel.Age;
+                regModel.Idnumber = +regModel.Idnumber;
+            }
+
+
+            regModel.getData().Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
+            oModel.create("/FORMRULES001Set", regModel.getData(), {
                 success: function (oData, oResponse) {
                     MessageBox.success("Customer ID created successfully!");
                 }.bind(this),
@@ -106,8 +107,11 @@ sap.ui.define([
                         }
                     });
                 }.bind(this)
-            }
-            );
+            });
+
+        },
+        fnStep1Complete: function () {
+            this.stepComplete("1");
         },
     });
 });
