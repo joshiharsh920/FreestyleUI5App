@@ -244,10 +244,132 @@
                             validated="true"
                             activate="fnStep2Activate"
                         >
-                            <MessageStrip
-                                text="This is second wizard step"
-                                showIcon="true"
-                            />
+                            <VBox class="sapUiMediumMargin">
+                                <!-- Row 1: Customer ID & Account Number -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Customer ID"
+                                        width="120px"
+                                        required="true"
+                                    />
+                                    <Input
+                                        value="{financeModel>/Customerid}"
+                                        width="200px"
+                                        class="sapUiMediumMarginEnd"
+                                    />
+
+                                    <Label
+                                        text="Account Number"
+                                        width="120px"
+                                        required="true"
+                                    />
+                                    <Input
+                                        value="{financeModel>/Accno}"
+                                        width="200px"
+                                    />
+                                </HBox>
+
+                                <!-- Row 2: First Name & Last Name -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="First Name"
+                                        width="120px"
+                                        required="true"
+                                    />
+                                    <Input
+                                        value="{financeModel>/Accholderfirstname}"
+                                        width="200px"
+                                        class="sapUiMediumMarginEnd"
+                                    />
+
+                                    <Label
+                                        text="Last Name"
+                                        width="120px"
+                                        required="true"
+                                    />
+                                    <Input
+                                        value="{financeModel>/Accholderlastname}"
+                                        width="200px"
+                                    />
+                                </HBox>
+
+                                <!-- Row 3: Address -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Address"
+                                        width="120px"
+                                    />
+                                    <Input
+                                        value="{financeModel>/Accholderaddress}"
+                                        width="520px"
+                                    />
+                                </HBox>
+
+                                <!-- Row 4: Bank Name & Account Type -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Bank Name"
+                                        width="120px"
+                                    />
+                                    <Input
+                                        value="{financeModel>/Bankname}"
+                                        width="200px"
+                                        class="sapUiMediumMarginEnd"
+                                    />
+
+                                    <Label
+                                        text="Account Type"
+                                        width="120px"
+                                    />
+                                    <Select
+                                        selectedKey="{financeModel>/Acctype}"
+                                        width="200px"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                key="SAVINGS"
+                                                text="Savings"
+                                            />
+                                            <core:Item
+                                                key="CURRENT"
+                                                text="Current"
+                                            />
+                                            <core:Item
+                                                key="SALARY"
+                                                text="Salary"
+                                            />
+                                        </items>
+                                    </Select>
+                                </HBox>
+
+                                <!-- Row 5: Annual Income -->
+                                <HBox
+                                    alignItems="Center"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <Label
+                                        text="Annual Income"
+                                        width="120px"
+                                    />
+                                    <Input
+                                        value="{financeModel>/Annualincome}"
+                                        width="200px"
+                                        type="Number"
+                                    />
+                                </HBox>
+                            </VBox>
                         </WizardStep>
                         <WizardStep
                             id="CustomerStep3"

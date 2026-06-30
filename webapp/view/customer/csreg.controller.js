@@ -77,7 +77,7 @@ sap.ui.define([
                 regModel.Idnumber = +regModel.Idnumber;
             }
 
-
+            regModel.getData().Formid=+oController.Formid;
             regModel.getData().Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
             oModel.create("/FORMRULES001Set", regModel.getData(), {
                 success: function (oData, oResponse) {
