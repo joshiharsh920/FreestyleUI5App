@@ -243,6 +243,7 @@
                             title="Finance Details"
                             validated="true"
                             activate="fnStep2Activate"
+                            complete="fnStep2Complete"
                         >
                             <VBox class="sapUiMediumMargin">
                                 <!-- Row 1: Customer ID & Account Number -->

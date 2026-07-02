@@ -18,20 +18,7 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             window.oController = this;
             const oArgs = oEvent.getParameter("arguments");
-            var oCSRegModel = new sap.ui.model.json.JSONModel({
-                Customerid: "",
-                Id: "AADHAR",
-                Idnumber: "",
-                Zfirstname: "HARSH",
-                Zlastname: "JOSHI",
-                Age: "",
-                Religion: "",
-                Email: "",
-                Phonenumber: "",
-                Homeadd: "",
-                Remarks: ""
-            }
-            );
+            var oCSRegModel = new sap.ui.model.json.JSONModel();
             var oModel = this.getView().getModel("sapModel");
             oModel.read("/CustomeTileSet", {
                 success: function (oData, oResponse) {
@@ -50,6 +37,9 @@ sap.ui.define([
             oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(oCSRegModel, "csregModel");
 
+            var financeModel = new sap.ui.model.json.JSONModel();
+            financeModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+            this.getView().setModel(financeModel, "financeModel");
             this.getView().byId('CreateProductWizard2').discardProgress(this.getView().byId('CreateProductWizard2').getSteps()[0]);
             this.getView().byId('CreateProductWizard2').goToStep(this.getView().byId('CreateProductWizard2').getSteps()[0]);
 
@@ -71,13 +61,21 @@ sap.ui.define([
             if (stepNo === "1") {
                 delete this.getView().getModel("csregModel").oData.__metadata;
                 regModel.setData(this.getView().getModel("csregModel").getData());
-                regModel.Customerid = +regModel.Customerid;
-                regModel.Phonenumber = +regModel.Phonenumber;
-                regModel.Age = +regModel.Age;
-                regModel.Idnumber = +regModel.Idnumber;
+                regModel.oData.Customerid = +regModel.oData.Customerid;
+                regModel.oData.Phonenumber = +regModel.oData.Phonenumber;
+                regModel.oData.Age = +regModel.oData.Age;
+                regModel.oData.Idnumber = +regModel.oData.Idnumber;
+            }
+            if (stepNo === "2") {
+                delete this.getView().getModel("financeModel").oData.__metadata;
+                regModel.setData(this.getView().getModel("financeModel").getData());
+                regModel.oData.Customerid = +regModel.oData.Customerid;
+                regModel.oData.Accno = +regModel.oData.Accno;
+                regModel.oData.Annualincome = +regModel.oData.Annualincome;
+                regModel.oData.Accno = +regModel.oData.Accno;
             }
 
-            regModel.getData().Formid=+oController.Formid;
+            regModel.getData().Formid = +oController.Formid;
             regModel.getData().Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
             oModel.create("/FORMRULES001Set", regModel.getData(), {
                 success: function (oData, oResponse) {
@@ -112,6 +110,9 @@ sap.ui.define([
         },
         fnStep1Complete: function () {
             this.stepComplete("1");
+        },
+        fnStep2Complete: function () {
+            this.stepComplete("2");
         },
     });
 });
