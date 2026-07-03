@@ -18,12 +18,47 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             window.oController = this;
             const oArgs = oEvent.getParameter("arguments");
+            if (!oArgs.stepNo) {
+                oArgs.stepNo = "1";
+            }
             var oCSRegModel = new sap.ui.model.json.JSONModel();
             var oModel = this.getView().getModel("sapModel");
-            oModel.read("/CustomeTileSet", {
+            var aFilters = [
+                new sap.ui.model.Filter("Stepno", sap.ui.model.FilterOperator.EQ, oArgs.stepNo)
+            ];
+            oModel.read("/FORMRULES001Set", {
+                filters: aFilters,
                 success: function (oData, oResponse) {
                     oController.Formid = oData.results[0].Formid;
-                    oCSRegModel.setData(oData.results[0]);
+                    const data = oData.results[0];
+
+                    const {
+                        Customerid,
+                        Id,
+                        Idnumber,
+                        Zfirstname,
+                        Zlastname,
+                        Age,
+                        Religion,
+                        Email,
+                        Phonenumber,
+                        Homeadd,
+                        Remarks
+                    } = data;
+
+                    oCSRegModel.setData({
+                        Customerid,
+                        Id,
+                        Idnumber,
+                        Zfirstname,
+                        Zlastname,
+                        Age,
+                        Religion,
+                        Email,
+                        Phonenumber,
+                        Homeadd,
+                        Remarks
+                    });
                     oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
                     this.getView().setModel(oCSRegModel, "csregModel");
                     MessageToast.success("Customer ID created successfully!");
@@ -79,7 +114,32 @@ sap.ui.define([
             regModel.getData().Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
             oModel.create("/FORMRULES001Set", regModel.getData(), {
                 success: function (oData, oResponse) {
-                    MessageBox.success("Customer ID created successfully!");
+                    const oData1 = oData;
+                    if (oData.Stepno === "1") {
+                        const {
+                            Customerid,
+                            Accno,
+                            Accholderfirstname,
+                            Accholderlastname,
+                            Accholderaddress,
+                            Bankname,
+                            Acctype,
+                            Annualincome
+                        } = oData1;
+                        var oModel = new sap.ui.model.json.JSONModel();
+                        oModel.setData({
+                            Customerid,
+                            Accno,
+                            Accholderfirstname,
+                            Accholderlastname,
+                            Accholderaddress,
+                            Bankname,
+                            Acctype,
+                            Annualincome
+                        });
+                        oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+                        this.getView().setModel(oModel, "financeModel");
+                    }
                 }.bind(this),
                 error: function (oError, oResponse) {
                     try {

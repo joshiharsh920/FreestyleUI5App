@@ -80,7 +80,7 @@ sap.ui.define([
             // });
         },
 
-      
+
         onCreate: function () {
 
             var oDialog = this._oDialog;
@@ -140,7 +140,7 @@ sap.ui.define([
 
                         sTitle = oController.formType;
                         this.getOwnerComponent().getRouter().navTo(sTitle, {
-                            formId: oController.Formid
+                            stepNo: oController.stepNo
                         });
 
                     }.bind(this),

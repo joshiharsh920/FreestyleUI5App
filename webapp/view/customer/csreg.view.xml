@@ -258,6 +258,7 @@
                                     />
                                     <Input
                                         value="{financeModel>/Customerid}"
+                                        enabled="false"
                                         width="200px"
                                         class="sapUiMediumMarginEnd"
                                     />
