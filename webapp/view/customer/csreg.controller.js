@@ -140,6 +140,29 @@ sap.ui.define([
                         oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
                         this.getView().setModel(oModel, "financeModel");
                     }
+                    if (oData.Stepno === "2") {
+                        var oReviewData = {
+                            Zfirstname: oData.Zfirstname,
+                            Zlastname: oData.Zlastname,
+                            Age: oData.Age,
+                            Religion: oData.Religion,
+                            Email: oData.Email,
+                            Phonenumber: oData.Phonenumber,
+                            Homeadd: oData.Homeadd,
+                            Remarks: oData.Remarks,
+
+                            Accno: oData.Accno,
+                            Bankname: oData.Bankname,
+                            Acctype: oData.Acctype,
+                            Annualincome: oData.Annualincome,
+                            Accholderfirstname: oData.Accholderfirstname,
+                            Accholderlastname: oData.Accholderlastname,
+                            Accholderaddress: oData.Accholderaddress
+                        };
+
+                        oReviewModel.setData(oReviewData);
+                        this.getView().setModel(oReviewModel, "reviewModel");
+                    }
                 }.bind(this),
                 error: function (oError, oResponse) {
                     try {

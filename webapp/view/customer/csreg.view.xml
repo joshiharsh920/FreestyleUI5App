@@ -378,10 +378,67 @@
                             title="Review Details"
                             validated="true"
                         >
-                            <MessageStrip
-                                text="This is third wizard step"
-                                showIcon="true"
-                            />
+                            <VBox class="sapUiMediumMargin">
+                                <!-- Personal Details -->
+                                <Title
+                                    text="Customer Details"
+                                    level="H5"
+                                />
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="First Name:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Zfirstname}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Last Name:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Zlastname}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Email:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Email}" />
+                                </HBox>
+
+                                <!-- Finance Details -->
+                                <Title
+                                    text="Finance Details"
+                                    level="H5"
+                                />
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Account Number:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Accno}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Bank Name:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Bankname}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Income:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Annualincome}" />
+                                </HBox>
+                            </VBox>
                         </WizardStep>
                         <WizardStep
                             id="CustomerStep4"
