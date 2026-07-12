@@ -72,6 +72,9 @@ sap.ui.define([
             oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(oCSRegModel, "csregModel");
 
+            var oReviewModel = new sap.ui.model.json.JSONModel();
+            oReviewModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+            this.getView().setModel(oReviewModel, "reviewModel");
             var financeModel = new sap.ui.model.json.JSONModel();
             financeModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(financeModel, "financeModel");
@@ -159,7 +162,7 @@ sap.ui.define([
                             Accholderlastname: oData.Accholderlastname,
                             Accholderaddress: oData.Accholderaddress
                         };
-
+                       var oReviewModel = new sap.ui.model.json.JSONModel();
                         oReviewModel.setData(oReviewData);
                         this.getView().setModel(oReviewModel, "reviewModel");
                     }

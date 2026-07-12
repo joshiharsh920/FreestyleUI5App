@@ -35,7 +35,7 @@
                     >
                         <WizardStep
                             id="CustomerStep1"
-                            title="Customer Details"
+                            title="Personal Details"
                             validated="true"
                             complete="fnStep1Complete"
                             activate="fnStep1Activate"
@@ -237,10 +237,12 @@
                                     />
                                 </HBox>
                             </VBox>
+
+                            
                         </WizardStep>
                         <WizardStep
                             id="CustomerStep2"
-                            title="Finance Details"
+                            title="Finance"
                             validated="true"
                             activate="fnStep2Activate"
                             complete="fnStep2Complete"
@@ -375,11 +377,13 @@
                         </WizardStep>
                         <WizardStep
                             id="CustomerStep3"
-                            title="Review Details"
+                            title="Review"
                             validated="true"
                         >
                             <VBox class="sapUiMediumMargin">
-                                <!-- Personal Details -->
+                                <!-- ===================== -->
+                                <!-- Customer Details -->
+                                <!-- ===================== -->
                                 <Title
                                     text="Customer Details"
                                     level="H5"
@@ -403,17 +407,68 @@
 
                                 <HBox class="sapUiSmallMarginBottom">
                                     <Text
+                                        text="Age:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Age}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Religion:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Religion}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
                                         text="Email:"
                                         width="150px"
                                     />
                                     <Text text="{reviewModel>/Email}" />
                                 </HBox>
 
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Phone Number:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Phonenumber}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Home Address:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Homeadd}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Remarks:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Remarks}" />
+                                </HBox>
+
+                                <!-- ===================== -->
                                 <!-- Finance Details -->
+                                <!-- ===================== -->
                                 <Title
                                     text="Finance Details"
                                     level="H5"
+                                    class="sapUiMediumMarginTop"
                                 />
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Customer ID:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Customerid}" />
+                                </HBox>
 
                                 <HBox class="sapUiSmallMarginBottom">
                                     <Text
@@ -421,6 +476,36 @@
                                         width="150px"
                                     />
                                     <Text text="{reviewModel>/Accno}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Account Holder First Name:"
+                                        width="150px"
+                                    />
+                                    <Text
+                                        text="{reviewModel>/Accholderfirstname}"
+                                    />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Account Holder Last Name:"
+                                        width="150px"
+                                    />
+                                    <Text
+                                        text="{reviewModel>/Accholderlastname}"
+                                    />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Account Holder Address:"
+                                        width="150px"
+                                    />
+                                    <Text
+                                        text="{reviewModel>/Accholderaddress}"
+                                    />
                                 </HBox>
 
                                 <HBox class="sapUiSmallMarginBottom">
@@ -433,14 +518,22 @@
 
                                 <HBox class="sapUiSmallMarginBottom">
                                     <Text
-                                        text="Income:"
+                                        text="Account Type:"
+                                        width="150px"
+                                    />
+                                    <Text text="{reviewModel>/Acctype}" />
+                                </HBox>
+
+                                <HBox class="sapUiSmallMarginBottom">
+                                    <Text
+                                        text="Annual Income:"
                                         width="150px"
                                     />
                                     <Text text="{reviewModel>/Annualincome}" />
                                 </HBox>
                             </VBox>
                         </WizardStep>
-                        <WizardStep
+                        <!-- <WizardStep
                             id="CustomerStep4"
                             title="Product Details"
                             validated="true"
@@ -449,7 +542,7 @@
                                 text="This is fourth wizard step"
                                 showIcon="true"
                             />
-                        </WizardStep>
+                        </WizardStep> -->
                     </Wizard>
                 </content>
             </Page>
