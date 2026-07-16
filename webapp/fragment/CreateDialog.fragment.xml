@@ -4,7 +4,9 @@
 
     <Dialog title="Create Order" id="createDialog">
 
-        <VBox class="sapUiSmallMargin">
+        <VBox class="sapUiSmallMargin"> 
+
+        
 
             <Input placeholder="Order ID" value="{new>/Orderid}" />
             <Input placeholder="Customer ID" value="{new>/Customerid}" />
