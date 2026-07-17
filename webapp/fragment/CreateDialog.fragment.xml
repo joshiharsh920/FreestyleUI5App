@@ -6,8 +6,6 @@
 
         <VBox class="sapUiSmallMargin"> 
 
-        
-
             <Input placeholder="Order ID" value="{new>/Orderid}" />
             <Input placeholder="Customer ID" value="{new>/Customerid}" />
             <Input placeholder="Customer Name" value="{new>/Customername}" />
