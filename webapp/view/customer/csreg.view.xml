@@ -6,6 +6,7 @@
     xmlns:u="sap.ui.unified"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
 >
     <NavContainer id="wizardNavContainer2">
         <pages>
@@ -237,8 +238,6 @@
                                     />
                                 </HBox>
                             </VBox>
-
-                            
                         </WizardStep>
                         <WizardStep
                             id="CustomerStep2"
@@ -373,6 +372,97 @@
                                         type="Number"
                                     />
                                 </HBox>
+                            </VBox>
+                        </WizardStep>
+                        <WizardStep
+                            id="AdhaarStep"
+                            title="Aadhaar Details"
+                            validated="true"
+                            activate="fnAdhaarActivate"
+                            complete="fnAdhaarComplete"
+                        >
+                            <VBox class="sapUiMediumMargin">
+                                <layout:Grid
+                                    defaultSpan="L6 M6 S12"
+                                    hSpacing="1"
+                                    vSpacing="1"
+                                >
+                                    <!-- Aadhaar Number -->
+                                    <Label
+                                        text="Aadhaar Number"
+                                        required="true"
+                                    />
+                                    <VBox>
+                                        <Input
+                                            value="{adhaarModel>/Adhaarno}"
+                                            type="Number"
+                                        />
+                                        <Button
+                                            text="Fetch Aadhaar Data"
+                                            press="onFetchAdhaarData"
+                                            type="Emphasized"
+                                            class="sapUiSmallMarginTop"
+                                            enabled="{= !!${adhaarModel>/Adhaarno} }"
+                                        />
+                                    </VBox>
+
+                                    <!-- Customer ID -->
+                                    <Label text="Customer ID" />
+                                    <Input
+                                        value="{csregModel>/Customerid}"
+                                        enabled="false"
+                                    />
+
+                                    <!-- First Name -->
+                                    <Label
+                                        text="First Name"
+                                        required="true"
+                                    />
+                                    <Input value="{adhaarModel>/Adhaarfname}" />
+
+                                    <!-- Last Name -->
+                                    <Label
+                                        text="Last Name"
+                                        required="true"
+                                    />
+                                    <Input value="{adhaarModel>/Aadharlname}" />
+
+                                    <!-- Address -->
+                                    <Label text="Address" />
+                                    <Input
+                                        value="{adhaarModel>/Address}"
+                                        width="100%"
+                                    />
+
+                                    <!-- Age -->
+                                    <Label text="Age" />
+                                    <Input
+                                        value="{adhaarModel>/Age}"
+                                        type="Number"
+                                    />
+
+                                    <!-- Phone -->
+                                    <Label text="Phone Number" />
+                                    <Input
+                                        value="{adhaarModel>/Phonenumber}"
+                                        type="Tel"
+                                    />
+
+                                    <!-- Father Name -->
+                                    <Label text="Father Name" />
+                                    <Input value="{adhaarModel>/Fathername}" />
+
+                                    <!-- Mother Name -->
+                                    <Label text="Mother Name" />
+                                    <Input value="{adhaarModel>/Mothername}" />
+
+                                    <!-- Pincode -->
+                                    <Label text="Pincode" />
+                                    <Input
+                                        value="{adhaarModel>/Pincode}"
+                                        type="Number"
+                                    />
+                                </layout:Grid>
                             </VBox>
                         </WizardStep>
                         <WizardStep
