@@ -72,6 +72,9 @@ sap.ui.define([
             oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(oCSRegModel, "csregModel");
 
+            var oAdhaarModel = new sap.ui.model.json.JSONModel();
+            oAdhaarModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+            this.getView().setModel(oAdhaarModel, "adhaarModel");
             var oReviewModel = new sap.ui.model.json.JSONModel();
             oReviewModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(oReviewModel, "reviewModel");
@@ -162,7 +165,7 @@ sap.ui.define([
                             Accholderlastname: oData.Accholderlastname,
                             Accholderaddress: oData.Accholderaddress
                         };
-                       var oReviewModel = new sap.ui.model.json.JSONModel();
+                        var oReviewModel = new sap.ui.model.json.JSONModel();
                         oReviewModel.setData(oReviewData);
                         this.getView().setModel(oReviewModel, "reviewModel");
                     }
@@ -193,6 +196,51 @@ sap.ui.define([
                 }.bind(this)
             });
 
+        },
+        onFetchAdhaarData: function () {
+            var oView = this.getView();
+            var oAdhaarModel = oView.getModel("adhaarModel");
+            var oModel = oView.getModel("sapModel"); // OData Model
+
+            var that = this;
+            // 🔥 Function Import Call
+            oModel.callFunction("/getAdhaarData", {
+                method: "GET",
+
+                urlParameters: {
+                    Customerid: this.getView().getModel("csregModel").getProperty("/Customerid").toString()  // MUST match backend parameter
+                },
+
+                success: function (oData) {
+                    oData = oData.results[0];
+                    // If backend returns structure
+                    oAdhaarModel.setProperty("/Adhaarfname", oData.Adhaarfname);
+                    oAdhaarModel.setProperty("/Aadharlname", oData.Aadharlname);
+                    oAdhaarModel.setProperty("/Address", oData.Address);
+                    oAdhaarModel.setProperty("/Age", oData.Age);
+                    oAdhaarModel.setProperty("/Phonenumber", oData.Phonenumber);
+                    oAdhaarModel.setProperty("/Fathername", oData.Fathername);
+                    oAdhaarModel.setProperty("/Mothername", oData.Mothername);
+                    oAdhaarModel.setProperty("/Pincode", oData.Pincode);
+                    oAdhaarModel.setProperty("/Customerid", oData.Customerid);
+                    oAdhaarModel.setProperty("/Adhaarno", oData.Adhaarno);
+
+                    that.getView().setModel(oAdhaarModel, "adhaarModel");
+                    that.getView().getModel('adhaarModel').refresh(true);
+
+                    sap.m.MessageToast.show("Aadhaar Data Fetched");
+                },
+
+                error: function (oError) {
+                    var sMsg = "Error occurred";
+
+                    try {
+                        sMsg = JSON.parse(oError.responseText).error.message.value;
+                    } catch (e) { }
+
+                    sap.m.MessageBox.error(sMsg);
+                }
+            });
         },
         fnStep1Complete: function () {
             this.stepComplete("1");

@@ -402,7 +402,7 @@
                                             press="onFetchAdhaarData"
                                             type="Emphasized"
                                             class="sapUiSmallMarginTop"
-                                            enabled="{= !!${adhaarModel>/Adhaarno} }"
+                                            enabled="{= !!${csregModel>/Customerid} }"
                                         />
                                     </VBox>
 
