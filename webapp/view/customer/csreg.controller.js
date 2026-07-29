@@ -61,7 +61,6 @@ sap.ui.define([
                     });
                     oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
                     this.getView().setModel(oCSRegModel, "csregModel");
-                    MessageToast.success("Customer ID created successfully!");
                 }.bind(this),
                 error: function (oError, oResponse) {
                 }.bind(this)
@@ -115,12 +114,42 @@ sap.ui.define([
                 regModel.oData.Annualincome = +regModel.oData.Annualincome;
                 regModel.oData.Accno = +regModel.oData.Accno;
             }
-
+            if (stepNo === "3") {
+                delete this.getView().getModel("adhaarModel").oData.__metadata;
+                regModel.setData(this.getView().getModel("adhaarModel").getData());
+                regModel.oData.Customerid = +regModel.oData.Customerid;
+                // regModel.oData.Adhaarno = +regModel.oData.Adhaarno;
+                regModel.oData.Phonenumber = +regModel.oData.Phonenumber;
+                regModel.oData.Age = +regModel.oData.Age;
+            }
+            if (stepNo === "4") {
+                delete this.getView().getModel("reviewModel").oData.__metadata;
+                regModel.setData(this.getView().getModel("reviewModel").getData());
+                regModel.getData().Customerid = oController.getView().getModel('csregModel').oData.Customerid
+            }
             regModel.getData().Formid = +oController.Formid;
             regModel.getData().Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
+            if (stepNo === "3") {
+                regModel.getData().Stepno = "3";
+            }
             oModel.create("/FORMRULES001Set", regModel.getData(), {
                 success: function (oData, oResponse) {
                     const oData1 = oData;
+                    if (oData.Formstatus === "SUBMITTED") {
+                        sap.m.MessageBox.success("Form submitted successfully!", {
+                            title: "Success",
+                            actions: [sap.m.MessageBox.Action.OK],
+                            onClose: function (oAction) {
+                                if (oAction === sap.m.MessageBox.Action.OK) {
+
+                                    // Navigation to home route
+                                    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                                    oRouter.navTo("RouteMainView"); // use your route name
+
+                                }
+                            }.bind(this)
+                        });
+                    }
                     if (oData.Stepno === "1") {
                         const {
                             Customerid,
@@ -146,7 +175,7 @@ sap.ui.define([
                         oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
                         this.getView().setModel(oModel, "financeModel");
                     }
-                    if (oData.Stepno === "2") {
+                    if (oData.Stepno === "3") {
                         var oReviewData = {
                             Zfirstname: oData.Zfirstname,
                             Zlastname: oData.Zlastname,
@@ -168,6 +197,39 @@ sap.ui.define([
                         var oReviewModel = new sap.ui.model.json.JSONModel();
                         oReviewModel.setData(oReviewData);
                         this.getView().setModel(oReviewModel, "reviewModel");
+                    }
+                    if (oData.Stepno === "2") {
+                        const {
+                            Adhaarno,
+                            Adhaarfname,
+                            Aadharlname,
+                            Address,
+                            Age,
+                            Phonenumber,
+                            Fathername,
+                            Mothername,
+                            Pincode,
+                            Customerid
+                        } = oData;
+
+                        var oAdhaarModel = new sap.ui.model.json.JSONModel();
+
+                        oAdhaarModel.setData({
+                            Adhaarno,
+                            Adhaarfname,
+                            Aadharlname,
+                            Address,
+                            Age,
+                            Phonenumber,
+                            Fathername,
+                            Mothername,
+                            Pincode,
+                            Customerid
+                        });
+
+                        oAdhaarModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+
+                        this.getView().setModel(oAdhaarModel, "adhaarModel");
                     }
                 }.bind(this),
                 error: function (oError, oResponse) {
@@ -248,5 +310,11 @@ sap.ui.define([
         fnStep2Complete: function () {
             this.stepComplete("2");
         },
+        fnAdhaarComplete: function () {
+            this.stepComplete("3");
+        },
+        fnReviewComplete: function () {
+            this.stepComplete("4");
+        }
     });
 });

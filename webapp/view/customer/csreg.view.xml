@@ -258,7 +258,7 @@
                                         required="true"
                                     />
                                     <Input
-                                        value="{financeModel>/Customerid}"
+                                        value="{csregModel>/Customerid}"
                                         enabled="false"
                                         width="200px"
                                         class="sapUiMediumMarginEnd"
@@ -375,7 +375,7 @@
                             </VBox>
                         </WizardStep>
                         <WizardStep
-                            id="AdhaarStep"
+                            id="Step"
                             title="Aadhaar Details"
                             validated="true"
                             activate="fnAdhaarActivate"
@@ -466,9 +466,10 @@
                             </VBox>
                         </WizardStep>
                         <WizardStep
-                            id="CustomerStep3"
+                            id="CustomerStep4"
                             title="Review"
                             validated="true"
+                            complete="fnReviewComplete"
                         >
                             <VBox class="sapUiMediumMargin">
                                 <!-- ===================== -->
