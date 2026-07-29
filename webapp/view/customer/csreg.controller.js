@@ -119,6 +119,7 @@ sap.ui.define([
                 regModel.setData(this.getView().getModel("adhaarModel").getData());
                 regModel.oData.Customerid = +regModel.oData.Customerid;
                 // regModel.oData.Adhaarno = +regModel.oData.Adhaarno;
+                regModel.oData.Pincode = +regModel.oData.Pincode;
                 regModel.oData.Phonenumber = +regModel.oData.Phonenumber;
                 regModel.oData.Age = +regModel.oData.Age;
             }
@@ -135,6 +136,7 @@ sap.ui.define([
             oModel.create("/FORMRULES001Set", regModel.getData(), {
                 success: function (oData, oResponse) {
                     const oData1 = oData;
+                    oController.Formid = oData.Formid;
                     if (oData.Formstatus === "SUBMITTED") {
                         sap.m.MessageBox.success("Form submitted successfully!", {
                             title: "Success",
