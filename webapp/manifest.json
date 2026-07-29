@@ -1,5 +1,5 @@
 {
-  "_version": "1.76.0",
+  "_version": "1.12.0",
   "sap.app": {
     "id": "joshi.project1trial",
     "type": "application",
@@ -74,6 +74,7 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {
+          "synchronizationMode": "None",
           "operationMode": "Server",
           "autoExpandSelect": true,
           "earlyRequests": true

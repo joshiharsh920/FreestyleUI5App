@@ -23,3 +23,8 @@ server:
 
           - path: /odata/v4/CatalogService
             url: https://port4004-workspaces-ws-wxf84.us10.trial.applicationstudio.cloud.sap
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**

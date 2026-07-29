@@ -82,7 +82,7 @@ sap.ui.define([
             this.getView().setModel(financeModel, "financeModel");
             this.getView().byId('CreateProductWizard2').discardProgress(this.getView().byId('CreateProductWizard2').getSteps()[0]);
             this.getView().byId('CreateProductWizard2').goToStep(this.getView().byId('CreateProductWizard2').getSteps()[0]);
-
+            oController.getView().byId("CustomerStep4")._oNextButton.setEnabled(false)
         },
         onNavigateToHome: function () {
             var oRouter = this.getOwnerComponent().getRouter();
@@ -109,7 +109,7 @@ sap.ui.define([
             if (stepNo === "2") {
                 delete this.getView().getModel("financeModel").oData.__metadata;
                 regModel.setData(this.getView().getModel("financeModel").getData());
-                regModel.oData.Customerid = +regModel.oData.Customerid;
+                regModel.oData.Customerid = ++oController.getView().getModel('csregModel').oData.Customerid;
                 regModel.oData.Accno = +regModel.oData.Accno;
                 regModel.oData.Annualincome = +regModel.oData.Annualincome;
                 regModel.oData.Accno = +regModel.oData.Accno;
@@ -117,7 +117,7 @@ sap.ui.define([
             if (stepNo === "3") {
                 delete this.getView().getModel("adhaarModel").oData.__metadata;
                 regModel.setData(this.getView().getModel("adhaarModel").getData());
-                regModel.oData.Customerid = +regModel.oData.Customerid;
+                regModel.oData.Customerid = +oController.getView().getModel('csregModel').oData.Customerid;
                 // regModel.oData.Adhaarno = +regModel.oData.Adhaarno;
                 regModel.oData.Pincode = +regModel.oData.Pincode;
                 regModel.oData.Phonenumber = +regModel.oData.Phonenumber;
@@ -126,7 +126,7 @@ sap.ui.define([
             if (stepNo === "4") {
                 delete this.getView().getModel("reviewModel").oData.__metadata;
                 regModel.setData(this.getView().getModel("reviewModel").getData());
-                regModel.getData().Customerid = oController.getView().getModel('csregModel').oData.Customerid
+                regModel.getData().Customerid = +oController.getView().getModel('csregModel').oData.Customerid;
             }
             regModel.getData().Formid = +oController.Formid;
             regModel.getData().Stepno = this.getView().byId("CreateProductWizard2").getCurrentStep().split('CustomerStep')[1];
@@ -199,6 +199,7 @@ sap.ui.define([
                         var oReviewModel = new sap.ui.model.json.JSONModel();
                         oReviewModel.setData(oReviewData);
                         this.getView().setModel(oReviewModel, "reviewModel");
+                        oController.getView().byId("CustomerStep4")._oNextButton.setEnabled(false)
                     }
                     if (oData.Stepno === "2") {
                         const {
@@ -313,9 +314,16 @@ sap.ui.define([
             this.stepComplete("2");
         },
         fnAdhaarComplete: function () {
-            this.stepComplete("3");
+            if (this.getView().byId("CreateProductWizard2").getCurrentStep().includes("CustormerStep4")) {
+                this.stepComplete("4");
+            } else {
+                this.stepComplete("3");
+            }
         },
-        fnReviewComplete: function () {
+        // fnReviewComplete: function () {
+        //     this.stepComplete("4");
+        // }
+        onReviewPress: function () {
             this.stepComplete("4");
         }
     });
