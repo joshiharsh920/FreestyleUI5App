@@ -17,8 +17,8 @@ server:
 
         backend:
           - path: /sap/opu/odata/sap/ZTEST1_HARSH_DEMO_SRV
-            url: http://ibssapserv52.ap-south-1.compute.amazonaws.com:8010
             client: "410"
+            url: http://ibssapserv52.ap-south-1.compute.amazonaws.com:8010/sap/opu/odata/sap/ZTEST1_HARSH_DEMO_SRV
             destination: onPremService
 
           - path: /odata/v4/CatalogService

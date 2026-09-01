@@ -16,7 +16,8 @@ sap.ui.define([
 
         onBeforeRendering() {
             var oModel = this.getView().getModel("sapModel");
-
+            oModel.refreshSecurityToken();
+            oModel.getSecurityToken();
             var oTabsModel = this.getView().getModel("tabsModel");
 
             if (oTabsModel && oTabsModel.getData().length > 0) {

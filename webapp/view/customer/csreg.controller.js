@@ -23,6 +23,7 @@ sap.ui.define([
             }
             var oCSRegModel = new sap.ui.model.json.JSONModel();
             var oModel = this.getView().getModel("sapModel");
+            oModel.setUseBatch(false);
             var aFilters = [
                 new sap.ui.model.Filter("Stepno", sap.ui.model.FilterOperator.EQ, oArgs.stepNo)
             ];
@@ -81,7 +82,9 @@ sap.ui.define([
             financeModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(financeModel, "financeModel");
             this.getView().byId('CreateProductWizard2').discardProgress(this.getView().byId('CreateProductWizard2').getSteps()[0]);
-            this.getView().byId('CreateProductWizard2').goToStep(this.getView().byId('CreateProductWizard2').getSteps()[0]);
+            this.getView().byId('CreateProductWizard2').goToStep(
+﻿
+this.getView().byId('CreateProductWizard2').getSteps()[oData.results[0].Stepno]);
             oController.getView().byId("CustomerStep4")._oNextButton.setEnabled(false)
         },
         onNavigateToHome: function () {
@@ -97,6 +100,7 @@ sap.ui.define([
         stepComplete: function (stepNo) {
             var oModel = this.getView().getModel("sapModel");
 
+            oModel.setUseBatch(false);
             var regModel = new sap.ui.model.json.JSONModel();
             if (stepNo === "1") {
                 delete this.getView().getModel("csregModel").oData.__metadata;
@@ -266,7 +270,7 @@ sap.ui.define([
             var oView = this.getView();
             var oAdhaarModel = oView.getModel("adhaarModel");
             var oModel = oView.getModel("sapModel"); // OData Model
-
+            oModel.setUseBatch(false);
             var that = this;
             // 🔥 Function Import Call
             oModel.callFunction("/getAdhaarData", {
