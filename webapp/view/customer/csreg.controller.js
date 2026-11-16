@@ -32,7 +32,7 @@ sap.ui.define([
                 success: function (oData, oResponse) {
                     oController.Formid = oData.results[0].Formid;
                     const data = oData.results[0];
-
+                    const stepNo = +oData.results[0].Stepno;
                     const {
                         Customerid,
                         Id,
@@ -62,6 +62,8 @@ sap.ui.define([
                     });
                     oCSRegModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
                     this.getView().setModel(oCSRegModel, "csregModel");
+                     this.getView().byId('CreateProductWizard2').discardProgress(this.getView().byId('CreateProductWizard2').getSteps()[0]);
+            this.getView().byId('CreateProductWizard2').goToStep(this.getView().byId('CreateProductWizard2').getSteps()[stepNo]);
                 }.bind(this),
                 error: function (oError, oResponse) {
                 }.bind(this)
@@ -81,10 +83,6 @@ sap.ui.define([
             var financeModel = new sap.ui.model.json.JSONModel();
             financeModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.getView().setModel(financeModel, "financeModel");
-            this.getView().byId('CreateProductWizard2').discardProgress(this.getView().byId('CreateProductWizard2').getSteps()[0]);
-            this.getView().byId('CreateProductWizard2').goToStep(
-﻿
-this.getView().byId('CreateProductWizard2').getSteps()[oData.results[0].Stepno]);
             oController.getView().byId("CustomerStep4")._oNextButton.setEnabled(false)
         },
         onNavigateToHome: function () {

@@ -32,6 +32,19 @@
           "odataVersion": "2.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "zcustomer-view": {
+          "semanticObject": "zcustomer",
+          "action": "view",
+          "title": "{{zcustomer-view.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {
@@ -84,7 +97,8 @@
         "dataSource": "sapService",
         "settings": {
           "defaultBindingMode": "TwoWay",
-          "useBatch": true
+          "useBatch": true,
+          "disableHeadRequestForToken": true
         }
       }
     },
@@ -151,5 +165,9 @@
       "id": "App",
       "async": true
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "joshiproject1trial"
   }
 }

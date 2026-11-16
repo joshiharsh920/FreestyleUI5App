@@ -11,18 +11,13 @@ builder:
       - /test/**
       - /localService/**
   customTasks:
-    - name: deploy-to-abap
+    - name: ui5-task-zipper
       afterTask: generateCachebusterInfo
       configuration:
-        target:
-          destination: onPremService
-          url: http://ibssapserv52.ap-south-1.compute.amazonaws.com:8010
-          client: '410'
-        app:
-          name: ZCUSTOMERAPP
-          description: Customer Application
-          package: $TMP
-          transport: ''
-        exclude:
-          - /test/
-          - /localService/
+        archiveName: joshiproject1trial
+        relativePaths: true
+        additionalFiles:
+          - xs-app.json
+resources:
+  configuration:
+    propertiesFileSourceEncoding: UTF-8
